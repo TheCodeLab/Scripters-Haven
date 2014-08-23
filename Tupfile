@@ -1,0 +1,8 @@
+include_rules
+
+CCFLAGS += `pkg-config --cflags sdl2 glew`
+LDFLAGS += `pkg-config --libs sdl2 glew` -lilgraphics -ltgl -lilcommon -lilasset -lilinput -lilutil -lilmath -ldl -lpng -lz
+
+: foreach src/*.c |> !cc |>
+: foreach src/*.cpp | IntenseLogic/src/version.h |> !cxx |>
+: *.o | IntenseLogic/<libs> IntenseLogic/tiffgl/libtgl.a |> !ld |> scriptershaven
